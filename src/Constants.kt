@@ -5,5 +5,6 @@ class Constants {
         val CAVALRY = 2
 
         val NONE = 0
+
     }
 }
