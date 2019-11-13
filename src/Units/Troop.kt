@@ -1,6 +1,7 @@
 package Units
 
 class Troop(var level: Int, var xp: Int, val classification: Int) {
+    var health = 100
     var melee  = 0
     var ranged = 0
     var movement = 0
@@ -16,6 +17,6 @@ class Troop(var level: Int, var xp: Int, val classification: Int) {
     }
 
     override fun toString(): String {
-        return "<Troop level=${this.level} xp:${this.xp} class=${this.classification}>"
+        return "<Troop level=${level} xp:${xp} stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) class=${classification}>"
     }
 }

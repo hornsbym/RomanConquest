@@ -1,5 +1,6 @@
 package Units.Banners
 
 class AttackBanner : Banner() {
-    val attack = 5
+    override val name = "Attack"
+    override val meleeBoost = 8
 }
