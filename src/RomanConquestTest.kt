@@ -1,7 +1,15 @@
-import Testing.Tester
+import Testing.TestDriver
 
 fun main() {
-    val tester = Tester()
+    val driver = TestDriver()
 
-    tester.testAttackBanner()
+    driver.testNewInfantry()
+    driver.testNewRanged()
+    driver.testNewCavalry()
+    driver.testSmallestCentury()
+    driver.testBiggestCentury()
+    driver.testTooSmallCentury()
+    driver.testTooBigCentury()
+    driver.testApplyAttackBanner()
+    driver.testRemoveAttackBanner()
 }

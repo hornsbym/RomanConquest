@@ -16,25 +16,26 @@ class Century(private val troops: ArrayList<Troop>) {
     var level = 1
     var cohesion = 1f
 
+    // Holds banner info here... re-calculates stats every time banner changes
     var banner: Banner = EmptyBanner()
     set(newBanner) {
         field = newBanner
         calculateStats()
     }
 
-
     init {
         calculateStats()
     }
 
     override fun toString(): String {
-        return "<Century level=${level} xp:${xp} stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) banner:${banner.name}>"
+        return "<Century level=${level} xp:${xp} stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) banner:${banner.name} troopCount:${troops.size}>"
     }
 
     /**
      * Calculates the statistics for the entire Century, accounting for cohesion and banner bonuses
      */
     private fun calculateStats() {
+        // Sets melee, ranged, movement, and defense to 0 so they can be summed accurately
         zeroStats()
 
         calculateHealth()
