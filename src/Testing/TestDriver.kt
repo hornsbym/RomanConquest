@@ -6,6 +6,7 @@ import Units.Banners.AttackBanner
 import Units.Banners.EmptyBanner
 import Units.Century
 import Units.Troop
+import kotlin.reflect.typeOf
 
 class TestDriver {
     init {
@@ -212,6 +213,7 @@ class TestDriver {
         for(x in 1..n){
             units.add(TroopFactory.newInfantry())
         }
+
 
         century = UnitCombiner.formCentury(units)
 

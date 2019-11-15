@@ -2,12 +2,7 @@ package Units
 
 import TroopBaseStats;
 
-class Troop(var level: Int, var xp: Int, val classification: Int) {
-    var health = TroopBaseStats.TROOP_HEALTH
-    var melee  = 0
-    var ranged = 0
-    var movement = 0
-    var defense = 0
+class Troop(override var level: Int, override var xp: Int, val classification: Int): Unit(level, xp) {
 
     init {
         // Assigns strengths depending on a Troop's class
