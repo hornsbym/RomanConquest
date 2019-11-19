@@ -1,4 +1,4 @@
-package Units.Banners
+package Modifiers.Banners
 
 /**
  * Applies a boost to a Century's defense equivalent to having an extra Infantry troop

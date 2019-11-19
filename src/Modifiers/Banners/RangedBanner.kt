@@ -1,4 +1,4 @@
-package Units.Banners
+package Modifiers.Banners
 
 /**
  * Applies a boost to a Century's ranged attack equivalent to having an extra Ranged troop

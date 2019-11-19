@@ -1,4 +1,4 @@
-package Units.Honors
+package Modifiers.Honors
 
 class AttackHonor : Honor {
     override val name = "Attack honor"

@@ -1,4 +1,4 @@
-package Units.Banners
+package Modifiers.Banners
 
 /**
  * Applies a boost to a Century's movement. Increases movement by 1.

@@ -1,4 +1,4 @@
-package Units.Honors
+package Modifiers.Honors
 
 interface Honor {
     val name: String

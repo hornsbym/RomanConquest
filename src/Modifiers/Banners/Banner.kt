@@ -1,4 +1,4 @@
-package Units.Banners
+package Modifiers.Banners
 
 abstract class Banner {
     open val name = ""

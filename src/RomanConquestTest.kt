@@ -13,4 +13,7 @@ fun main() {
     driver.testApplyAttackBanner()
     driver.testRemoveAttackBanner()
     driver.testSmallestCohort()
+    driver.testBiggestCohort()
+    driver.testTooSmallCohort()
+    driver.testTooBigCohort()
 }

@@ -1,9 +1,7 @@
 package Units
 
-import Units.Banners.Banner
-import Units.Banners.EmptyBanner
-import kotlin.math.floor
-import kotlin.math.roundToInt
+import Modifiers.Banners.Banner
+import Modifiers.Banners.EmptyBanner
 
 class Century(private val troops: ArrayList<Troop>): CombinedUnit(troops) {
     // Holds banner info here... re-calculates stats every time banner changes

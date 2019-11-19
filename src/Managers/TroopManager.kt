@@ -7,27 +7,30 @@ package Managers
 import Units.Troop
 import Constants
 
+/**
+ * Responsible for maintaining references to all troops in the game.
+ */
 object TroopManager {
     // Holds a dictionary for finding troops
-    private val TroopList = HashMap<Int, ArrayList<Troop>>()
+    private val TroopDict = HashMap<Int, ArrayList<Troop>>()
 
     /**
      * Initializes the three main classifications of troops in the dictionary
      * Makes finding a particular troop much easier
      * */
     init {
-        TroopList[Constants.INFANTRY] = ArrayList<Troop>()
-        TroopList[Constants.RANGED] = ArrayList<Troop>()
-        TroopList[Constants.CAVALRY] = ArrayList<Troop>()
+        TroopDict[Constants.INFANTRY] = ArrayList()
+        TroopDict[Constants.RANGED] = ArrayList()
+        TroopDict[Constants.CAVALRY] = ArrayList()
     }
 
     /**
      * Lets us look at the troop list
      */
     override fun toString(): String {
-        val infantry = TroopList[Constants.INFANTRY]!!
-        val ranged = TroopList[Constants.RANGED]!!
-        val cavalry = TroopList[Constants.CAVALRY]!!
+        val infantry = TroopDict[Constants.INFANTRY]!!
+        val ranged = TroopDict[Constants.RANGED]!!
+        val cavalry = TroopDict[Constants.CAVALRY]!!
 
         var returnString = "Infantry: "
         if (infantry.size > 0){
@@ -61,6 +64,6 @@ object TroopManager {
      * @param Troop
      */
     fun addTroop(newTroop: Troop){
-        TroopList[newTroop.classification]!!.add(newTroop)
+        TroopDict[newTroop.classification]!!.add(newTroop)
     }
 }

@@ -1,6 +1,6 @@
 package Units
 
-import Units.Honors.EmptyHonor
+import Modifiers.Honors.EmptyHonor
 
 class Cohort(private val centuries: ArrayList<Century>) : CombinedUnit(centuries) {
     var honor = EmptyHonor()

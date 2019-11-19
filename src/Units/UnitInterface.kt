@@ -4,6 +4,7 @@ package Units
  * Outlines the basic functionality of any given unit in the game
  */
 interface UnitInterface {
+    var name: String
     var health: Int
     var melee: Int
     var ranged: Int

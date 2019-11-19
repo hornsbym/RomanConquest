@@ -12,9 +12,11 @@ class Constants {
         const val CENTURY_HEALTH_MULTIPLIER = 1.3
 
         // Contains constants regarding CombinedUnit restraints:
-        const val CENTURY_SIZE_LOWER_BOUND = 3
+        const val CENTURY_SIZE_LOWER_BOUND = 6
         const val CENTURY_SIZE_UPPER_BOUND = 10
         const val COHORT_SIZE_LOWER_BOUND = 3
         const val COHORT_SIZE_UPPER_BOUND = 6
+        const val LEGION_SIZE_LOWER_BOUND = 6
+        const val LEGION_SIZE_UPPER_BOUND = 10
     }
 }
