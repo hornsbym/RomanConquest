@@ -4,15 +4,12 @@ import kotlin.math.floor
 import kotlin.math.roundToInt
 
 // <out Unit> I think means "Accept any subclass of type Unit?
-abstract class CombinedUnit (private val units: ArrayList<out Unit>): UnitInterface, CombinedUnitInterface {
+abstract class CombinedUnit (private val units: ArrayList<out Unit>): Unit(1, 0), CombinedUnitInterface {
     override var health = TroopBaseStats.TROOP_HEALTH
     override var melee  = 0
     override var ranged = 0
     override var movement = 0
     override var defense = 0
-
-    override var level = 1
-    override var xp = 0
 
     override var cohesion = 1f
 

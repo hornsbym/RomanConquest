@@ -5,6 +5,7 @@ import Managers.UnitCombiner
 import Units.Banners.AttackBanner
 import Units.Banners.EmptyBanner
 import Units.Century
+import Units.Cohort
 import Units.Troop
 import kotlin.reflect.typeOf
 
@@ -87,7 +88,7 @@ class TestDriver {
     fun testTooSmallCentury() {
         var retStr = "Form century with 2 troops: "
 
-        val century = formCenturyOfSize(2)
+        val century = formCenturyOfSize(Constants.CENTURY_SIZE_LOWER_BOUND - 1)
 
         if (century == null) {
             retStr += "PASS"
@@ -105,7 +106,7 @@ class TestDriver {
     fun testTooBigCentury() {
         var retStr = "Form century with 11 troops: "
 
-        val century = formCenturyOfSize(11)
+        val century = formCenturyOfSize(Constants.CENTURY_SIZE_UPPER_BOUND + 1)
 
         if (century == null) {
             retStr += "PASS"
@@ -123,10 +124,10 @@ class TestDriver {
     fun testBiggestCentury() {
         var retStr = "Form century with 10 troops: "
 
-        val century = formCenturyOfSize(10)
+        val century = formCenturyOfSize(Constants.CENTURY_SIZE_UPPER_BOUND)
 
         if (century != null) {
-            retStr += "PASS"
+            retStr += "PASS --> " + century.toString()
         } else {
             retStr += "FAIL --> " + century.toString()
         }
@@ -141,10 +142,10 @@ class TestDriver {
     fun testSmallestCentury() {
         var retStr = "Form century with 6 troops: "
 
-        val century = formCenturyOfSize(6)
+        val century = formCenturyOfSize(Constants.CENTURY_SIZE_LOWER_BOUND)
 
         if (century != null) {
-            retStr += "PASS"
+            retStr += "PASS --> " + century.toString()
         } else {
             retStr += "FAIL --> " + century.toString()
         }
@@ -202,6 +203,24 @@ class TestDriver {
     }
 
     /**
+     * Tests the formation of the smallest cohort possible.
+     * Forms the smallest possible cohort composed of the smallest possible Centuries.
+     */
+    fun testSmallestCohort() {
+        var retStr = "Forming cohort of 3 centuries: "
+
+        val cohort = formCohortOfSize(Constants.COHORT_SIZE_LOWER_BOUND, Constants.CENTURY_SIZE_LOWER_BOUND)
+
+        if (cohort != null) {
+            retStr += "PASS"
+        } else {
+            retStr += "FAIL --> " + cohort.toString()
+        }
+
+        println(retStr)
+    }
+
+    /**
      * Convenience method for easily forming a new century of a given size
      * Only forms uniform centuries of all infantry troops
      */
@@ -220,4 +239,22 @@ class TestDriver {
         return century
     }
 
+    /**
+     * Convenience method for easily forming a new cohort of a given size
+     * Only forms uniform cohorts composed of centuries of the provided size of infantry troops
+     * @param centurySize must be an integer between 6 and 10
+     */
+    private fun formCohortOfSize(cohortSize: Int, centurySize: Int) : Cohort? {
+        var cohort: Cohort?
+
+        val centuries = ArrayList<Century>()
+
+        for(x in 1..cohortSize){
+            centuries.add(formCenturyOfSize(centurySize)!!)
+        }
+
+        cohort = UnitCombiner.formCohort(centuries)
+
+        return cohort
+    }
 }

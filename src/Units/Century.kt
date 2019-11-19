@@ -18,7 +18,7 @@ class Century(private val troops: ArrayList<Troop>): CombinedUnit(troops) {
     }
 
     override fun toString(): String {
-        return "<Century level=${level} xp:${xp} stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) banner:${banner.name} troopCount:${troops.size}>"
+        return "<Century level=${level} xp:${xp} stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${banner.name} troopCount:${troops.size}>"
     }
 
     override fun calculateStats() {

@@ -12,4 +12,5 @@ fun main() {
     driver.testTooBigCentury()
     driver.testApplyAttackBanner()
     driver.testRemoveAttackBanner()
+    driver.testSmallestCohort()
 }
