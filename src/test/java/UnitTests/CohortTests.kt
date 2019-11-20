@@ -2,8 +2,8 @@ package Unit
 
 import Modifiers.Banners.AttackBanner
 import Modifiers.Banners.EmptyBanner
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class CohortTests {
     @Test
