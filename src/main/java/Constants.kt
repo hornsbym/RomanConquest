@@ -8,8 +8,9 @@ class Constants {
         const val RANGED = 1
         const val CAVALRY = 2
 
-        // Contains constants regarding bonus multipliers:
-        const val CENTURY_HEALTH_MULTIPLIER = 1.3
+        // Contains constants regarding stat multipliers:
+        // Some of these decrease stats for balancing purposes, like the health multiplier
+        const val COMBINED_UNIT_HEALTH_MULTIPLIER = .9
 
         // Contains constants regarding CombinedUnit restraints:
         const val CENTURY_SIZE_LOWER_BOUND = 6

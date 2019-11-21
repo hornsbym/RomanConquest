@@ -14,7 +14,7 @@ class Cohort(override var name: String, private val centuries: ArrayList<Century
     }
 
     override fun toString(): String {
-        return "<Cohort name=${name} level=${level} xp:${xp} stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${honor.name} troopCount:${centuries.size} >"
+        return "<Cohort name=\"${name}\" level=${level} xp:${xp} stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) honor:${honor.name} centuryCount:${centuries.size}>"
     }
 
     override fun calculateStats() {

@@ -2,10 +2,11 @@ package Unit
 
 import Modifiers.Banners.AttackBanner
 import Modifiers.Banners.EmptyBanner
+import Unit.UnitTestUtils.formCenturyOfSize
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class CohortTests {
+class CenturyTests {
     @Test
     fun testCenturyLowerBound() {
         val century = UnitTestUtils.formCenturyOfSize(Constants.CENTURY_SIZE_LOWER_BOUND - 1)

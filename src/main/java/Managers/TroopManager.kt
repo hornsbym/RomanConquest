@@ -35,7 +35,7 @@ object TroopManager {
         var returnString = "Infantry: "
         if (infantry.size > 0){
             for (troop in infantry){
-                returnString += "$troop, "
+                returnString += "\n\t$troop"
             }
             returnString = returnString.substring(0, returnString.length - 2)
         }
@@ -43,7 +43,7 @@ object TroopManager {
         returnString += "\nRanged: "
         if (ranged.size > 0){
             for (troop in ranged){
-                returnString += "$troop, "
+                returnString += "\n\t$troop"
             }
             returnString = returnString.substring(0, returnString.length - 2)
         }
@@ -51,7 +51,7 @@ object TroopManager {
         returnString += "\nCavalry: "
         if (cavalry.size > 0){
             for (troop in cavalry){
-                returnString += "$troop, "
+                returnString += "\n\t$troop"
             }
             returnString = returnString.substring(0, returnString.length - 2)
         }

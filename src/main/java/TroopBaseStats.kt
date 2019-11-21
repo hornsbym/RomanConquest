@@ -3,7 +3,7 @@
  */
 class TroopBaseStats {
     companion object TroopBaseStats {
-        const val TROOP_HEALTH = 100
+        const val TROOP_HEALTH = 80
 
         const val INFANTRY_MELEE = 8
         const val INFANTRY_RANGED = 0

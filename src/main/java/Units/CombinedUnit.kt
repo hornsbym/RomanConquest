@@ -46,7 +46,7 @@ abstract class CombinedUnit (override var name: String, private val units: Array
             health += unit.health
         }
 
-        health = (health * Constants.CENTURY_HEALTH_MULTIPLIER).toInt()
+        health = (health * Constants.COMBINED_UNIT_HEALTH_MULTIPLIER).toInt()
     }
 
     /**
