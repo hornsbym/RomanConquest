@@ -3,7 +3,7 @@ package Units
 import kotlin.math.floor
 import kotlin.math.roundToInt
 
-// <out Unit> I think means "Accept any subclass of type Unit?
+// <out Unit> I think means "Accept any subclass of type Unit"?
 abstract class CombinedUnit (override var name: String, private val units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
     override var health = TroopBaseStats.TROOP_HEALTH
     override var melee  = 0

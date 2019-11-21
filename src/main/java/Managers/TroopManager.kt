@@ -9,6 +9,7 @@ import Constants
 
 /**
  * Responsible for maintaining references to all troops in the game.
+ * Intended to make finding Troops easier/faster.
  */
 object TroopManager {
     // Holds a dictionary for finding troops

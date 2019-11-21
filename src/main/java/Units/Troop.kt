@@ -1,9 +1,8 @@
 package Units
 
-import TroopBaseStats;
+import TroopBaseStats
 
 class Troop(override var name: String, override var level: Int, override var xp: Int, val classification: Int): Unit(name, level, xp) {
-
     init {
         // Assigns strengths depending on a Troop's class
         when(classification){
