@@ -67,4 +67,12 @@ object TroopManager {
     fun addTroop(newTroop: Troop){
         TroopDict[newTroop.classification]!!.add(newTroop)
     }
+
+    /**
+     * Removes a given troop from the Troop list
+     * @param Troop
+     */
+    fun removeTroop(troop: Troop){
+        TroopDict[troop.classification]!!.remove(troop)
+    }
 }

@@ -2,6 +2,7 @@ package Units
 
 import kotlin.math.floor
 import kotlin.math.roundToInt
+import kotlin.random.Random
 
 // <out Unit> I think means "Accept any subclass of type Unit"?
 abstract class CombinedUnit (override var name: String, private val units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
@@ -98,4 +99,47 @@ abstract class CombinedUnit (override var name: String, private val units: Array
         defense = (defense * cohesion).roundToInt()
     }
 
+    /**
+     * FOR DEBUGGING ONLY
+     * Lets us see the units in the combined units
+     */
+    fun printUnits(){
+        println("Units in $this:")
+        for (unit in units) {
+            println("\t- $unit")
+        }
+    }
+
+    /**
+     * Overrides the "takeDamage" method of the abstract Unit.
+     * Disperses the damage taken evenly over all Units that comprise the CombinedUnit
+     */
+    override fun takeDamage(damage: Int){
+        // Calculates how much damage each unit should recieve as a double
+        val exactDamagePerUnit = damage.div(units.size.toDouble())
+
+        // Turns that into a string
+        val exactDamageAsString = exactDamagePerUnit.toString()
+
+        // Separates the whole number from the decimal
+        val wholeAndDecimalList = exactDamageAsString.split(".")
+
+        // Isolates the whole and decimals
+        val whole = wholeAndDecimalList[0].toInt()
+        val decimal = (".${wholeAndDecimalList[1]}").toDouble()
+
+        // Applies the whole number damage to all troops in the unit
+        for (unit in units) {
+            unit.takeDamage(whole)
+        }
+
+        // Randomly applies the remaining damage to random Troops
+        val disperseDecimal = (decimal * units.size.toDouble()).toInt()
+        for (x in 0..disperseDecimal){
+            val randomTroopIndex = Random.nextInt(0, units.size)
+            units[randomTroopIndex].takeDamage(1)
+        }
+
+        calculateStats()
+    }
 }

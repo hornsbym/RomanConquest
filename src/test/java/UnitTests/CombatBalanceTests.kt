@@ -2,8 +2,8 @@ package UnitTests
 
 import Factories.TroopFactory
 import Managers.TroopManager
-import Unit.UnitTestUtils.formCenturyOfSize
-import Unit.UnitTestUtils.formCohortOfSize
+import UnitTests.UnitTestUtils.formCenturyOfSize
+import UnitTests.UnitTestUtils.formCohortOfSize
 import org.junit.jupiter.api.Test
 
 class CombatBalanceTests {
