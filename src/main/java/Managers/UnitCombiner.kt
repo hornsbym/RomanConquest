@@ -21,7 +21,13 @@ object UnitCombiner {
         if (troopList.size in Constants.CENTURY_SIZE_LOWER_BOUND..Constants.CENTURY_SIZE_UPPER_BOUND) {
             centuryCount++
             val name = generateNumberAndOrdinal(centuryCount) + " Century"
-            return Century(name, troopList)
+
+            val newCentury = Century(name, troopList)
+            for (troop in troopList) {
+                troop.century = newCentury
+            }
+
+            return newCentury
         } else {
             return null
         }

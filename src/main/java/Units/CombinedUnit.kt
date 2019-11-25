@@ -5,7 +5,7 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 // <out Unit> I think means "Accept any subclass of type Unit"?
-abstract class CombinedUnit (override var name: String, private val units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
+abstract class CombinedUnit (override var name: String, private var units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
     override var health = TroopBaseStats.TROOP_HEALTH
     override var melee  = 0
     override var ranged = 0
@@ -29,14 +29,16 @@ abstract class CombinedUnit (override var name: String, private val units: Array
      * Calculates the statistics for the entire Century, accounting for cohesion and banner bonuses
      */
     protected open fun calculateStats() {
-        // Sets melee, ranged, movement, and defense to 0 so they can be summed accurately
-        zeroStats()
+        if (units.size > 0) {
+            // Sets melee, ranged, movement, and defense to 0 so they can be summed accurately
+            zeroStats()
 
-        calculateHealth()
-        calculateMelee()
-        calculateRanged()
-        calculateMovement()
-        calculateDefense()
+            calculateHealth()
+            calculateMelee()
+            calculateRanged()
+            calculateMovement()
+            calculateDefense()
+        }
     }
 
     /**
@@ -140,6 +142,31 @@ abstract class CombinedUnit (override var name: String, private val units: Array
             units[randomTroopIndex].takeDamage(1)
         }
 
+        removeDeadUnits()
         calculateStats()
+    }
+
+    /**
+     * Builds a new list of Units.
+     * Only includes Units whose health is greater than 0.
+     */
+    private fun removeDeadUnits() {
+        val newUnits = ArrayList<Unit>()
+
+        for (unit in units) {
+            if (unit.health > 0) {
+                newUnits.add(unit)
+            }
+        }
+
+        this.units = newUnits
+    }
+
+    /**
+     * Method for removing units from the master list of units.
+     * Happens when moving units around or whenever a unit dies/disbands
+     */
+    fun removeUnit(unitForRemoval: Unit) {
+        units.remove(unitForRemoval)
     }
 }

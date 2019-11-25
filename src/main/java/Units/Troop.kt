@@ -1,8 +1,11 @@
 package Units
 
+import Managers.TroopManager
 import TroopBaseStats
 
 class Troop(override var name: String, override var level: Int, override var xp: Int, val classification: Int): Unit(name, level, xp) {
+    var century: Century? = null
+
     init {
         // Assigns strengths depending on a Troop's class
         when(classification){
@@ -13,7 +16,7 @@ class Troop(override var name: String, override var level: Int, override var xp:
     }
 
     override fun toString(): String {
-        return "<Troop name=\"${name}\" level=${level} xp:${xp} stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) class=${classification}>"
+        return "<Troop name=\"${name}\" level=${level} xp:${xp} century:\"${century?.name}\" stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) class=${classification}>"
     }
 
     /**
@@ -44,5 +47,13 @@ class Troop(override var name: String, override var level: Int, override var xp:
         ranged = TroopBaseStats.CAVALRY_RANGED
         movement = TroopBaseStats.CAVALRY_MOVEMENT
         defense = TroopBaseStats.CAVALRY_DEFENSE
+    }
+
+    /**
+     * Removes all of a Troop's references from the game
+     */
+    fun die() {
+        century?.removeUnit(this)
+        TroopManager.removeTroop(this)
     }
 }

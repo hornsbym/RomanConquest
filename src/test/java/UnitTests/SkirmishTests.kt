@@ -41,6 +41,8 @@ class SkirmishTests {
         println("After: ")
         println(unit1)
         println(unit2)
+
+        unit2.printUnits()
     }
 
     @Test
@@ -58,5 +60,20 @@ class SkirmishTests {
         println("After: ")
         println(unit1)
         println(unit2)
+    }
+
+    @Test
+    fun testDestroyCentury() {
+        val unit1 = formCenturyOfSize(10, Constants.CAVALRY)!!
+        val unit2 = formCenturyOfSize(6, Constants.RANGED)!!
+
+        println("Before: ")
+        unit2.printUnits()
+
+        val manager = smf.newMeleeSkirmishManager(unit1, unit2)
+        manager.meleeSkirmish()
+
+        println("After: ")
+        unit2.printUnits()
     }
 }

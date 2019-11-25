@@ -4,6 +4,8 @@ import Modifiers.Banners.Banner
 import Modifiers.Banners.EmptyBanner
 
 class Century(override var name: String , private val troops: ArrayList<Troop>): CombinedUnit(name, troops) {
+    var cohort: Cohort? = null
+
     // Holds banner info here... re-calculates stats every time banner changes
     var banner: Banner = EmptyBanner()
     set(newBanner) {
@@ -16,7 +18,7 @@ class Century(override var name: String , private val troops: ArrayList<Troop>):
     }
 
     override fun toString(): String {
-        return "<Century name=\"${name}\" level=${level} xp:${xp} stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${banner.name} troopCount:${troops.size}>"
+        return "<Century name=\"${name}\" level=${level} xp:${xp} cohort:\"${cohort?.name}\" stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${banner.name} troopCount:${troops.size}>"
     }
 
     override fun calculateStats() {
