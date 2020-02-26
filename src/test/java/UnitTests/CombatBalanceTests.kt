@@ -1,7 +1,6 @@
 package UnitTests
 
-import Factories.TroopFactory
-import Managers.TroopManager
+import models.Factories.TroopFactory
 import UnitTests.UnitTestUtils.formCenturyOfSize
 import UnitTests.UnitTestUtils.formCohortOfSize
 import org.junit.jupiter.api.Test
@@ -45,6 +44,5 @@ class CombatBalanceTests {
 
         println(smallestCohort)
         println(largestCohort)
-        println(TroopManager)
     }
 }

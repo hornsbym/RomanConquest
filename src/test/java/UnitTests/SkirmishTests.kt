@@ -1,8 +1,9 @@
 package UnitTests
 
-import Factories.SkirmishManagerFactory
-import Factories.TroopFactory
+import models.Factories.SkirmishManagerFactory
+import models.Factories.TroopFactory
 import UnitTests.UnitTestUtils.formCenturyOfSize
+import UnitTests.UnitTestUtils.formCohortOfSize
 import org.junit.jupiter.api.Test
 
 
@@ -64,8 +65,8 @@ class SkirmishTests {
 
     @Test
     fun testDestroyCentury() {
-        val unit1 = formCenturyOfSize(10, Constants.CAVALRY)!!
-        val unit2 = formCenturyOfSize(6, Constants.RANGED)!!
+        val unit1 = formCenturyOfSize(Constants.CENTURY_SIZE_UPPER_BOUND, Constants.CAVALRY)!!
+        val unit2 = formCenturyOfSize(Constants.CENTURY_SIZE_LOWER_BOUND, Constants.RANGED)!!
 
         println("Before: ")
         unit2.printUnits()
@@ -74,6 +75,23 @@ class SkirmishTests {
         manager.meleeSkirmish()
 
         println("After: ")
+        unit2.printUnits()
+    }
+
+    @Test
+    fun testDestroyCohort() {
+        val unit1 = formCohortOfSize(Constants.COHORT_SIZE_UPPER_BOUND, Constants.CENTURY_SIZE_UPPER_BOUND, Constants.CAVALRY)!!
+        val unit2 = formCohortOfSize(Constants.COHORT_SIZE_LOWER_BOUND, Constants.CENTURY_SIZE_LOWER_BOUND, Constants.RANGED)!!
+
+        println("Before: ")
+        unit1.printUnits()
+        unit2.printUnits()
+
+        val manager = smf.newMeleeSkirmishManager(unit1, unit2)
+        manager.meleeSkirmish()
+
+        println("After: ")
+        unit1.printUnits()
         unit2.printUnits()
     }
 }

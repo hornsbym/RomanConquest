@@ -1,4 +1,6 @@
 object Utils {
+    val rootPath = System.getProperty("user.dir") + "/src/main/java"
+
     /**
      * Adds an ordinal abbreviation to the end of the number (etc, 1st, 13th, 24th)
      * @return String

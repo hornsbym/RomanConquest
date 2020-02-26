@@ -1,9 +1,7 @@
 package UnitTests
 
-import Modifiers.Banners.AttackBanner
-import Modifiers.Banners.EmptyBanner
-import UnitTests.UnitTestUtils.formCenturyOfSize
-import UnitTests.UnitTestUtils
+import models.Modifiers.Banners.AttackBanner
+import models.Modifiers.Banners.EmptyBanner
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
 package Unit
 
-import Factories.TroopFactory
+import models.Factories.TroopFactory
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

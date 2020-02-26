@@ -1,0 +1,11 @@
+[
+  ["Rome", "Neapolis", 2],
+  ["Rome", "Perusia", 2],
+  ["Rome", "Volterra", 2],
+  ["Volterra", "Arretium", 1],
+  ["Neapolis", "Croton", 2],
+  ["Neapolis", "Tares", 2],
+  ["Tares", "Croton", 2],
+  ["Croton", "Syracuse", 2],
+  ["Syracuse", "Panormus", 1]
+]

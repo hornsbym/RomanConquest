@@ -1,10 +1,10 @@
 package UnitTests
 
-import Factories.TroopFactory
-import Managers.UnitCombiner
-import Units.Century
-import Units.Cohort
-import Units.Troop
+import models.Factories.TroopFactory
+import models.Managers.UnitCombiner
+import models.Units.Century
+import models.Units.Cohort
+import models.Units.Troop
 
 object UnitTestUtils {
     /**
