@@ -1,3 +1,8 @@
+/**
+ * @author Mitchell Hornsby
+ * Class containing information about where each city should be placed on the map.
+ * Each pair represents the a set of (x, y) pixel coordinates.
+ */
 package views.widgets.MapPanel
 
 object CityCoords {

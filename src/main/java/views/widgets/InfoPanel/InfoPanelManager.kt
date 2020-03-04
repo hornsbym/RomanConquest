@@ -6,20 +6,32 @@
 package views.widgets.InfoPanel
 
 import models.Managers.PlayerManager
-import models.Map.City
+import models.Units.Unit
 
 object InfoPanelManager {
+    var currentScreen = "DEFAULT"
     val infopanel = InfoPanel()
 
-    fun refreshSelectedCity() {
-        var selectedCity = PlayerManager.player.selectedCity
+    fun toSelectedCityScreen() {
+        currentScreen = "SELECTED_CITY"
+        infopanel.toSelectedCityScreen()
+    }
 
-        if (selectedCity !== null) {
-            this.infopanel.setCityName(selectedCity.name)
-            this.infopanel.setCityFriendlyUnits("Your units: " + selectedCity.friendlyUnits.toString())
-            this.infopanel.setCityHostileUnits("Enemy units: " + selectedCity.hostileUnits.toString())
+    fun toDefaultScreen() {
+        currentScreen = "DEFAULT"
+        infopanel.toDefaultScreen()
+    }
+
+    fun toViewUnitScreen(unit: Unit) {
+        currentScreen = "VIEW_UNIT"
+        infopanel.toViewUnitScreen(unit)
+    }
+
+    fun refresh() {
+        when (currentScreen) {
+            "DEFAULT" -> toDefaultScreen()
+//            "VIEW_UNIT" -> toViewUnitScreen()
+            "SELECTED_CITY" -> toSelectedCityScreen()
         }
-
-        infopanel.refresh()
     }
 }

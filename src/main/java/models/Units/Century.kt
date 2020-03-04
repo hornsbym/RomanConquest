@@ -18,7 +18,7 @@ class Century(override var name: String , private var troops: ArrayList<Troop>):
     }
 
     override fun toString(): String {
-        return "<Century name=\"${name}\" level=${level} xp:${xp} cohort:\"${cohort?.name}\" stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${banner.name} troopCount:${troops.size}>"
+        return name
     }
 
     override fun calculateStats() {

@@ -12,7 +12,8 @@ interface UnitInterface {
     var movement: Int
     var defense: Int
 
-    var cost: Int
+    var purchaseCost: Int
+    var trainingCost: Int
     var xp: Int
     var level: Int
 }

@@ -14,7 +14,7 @@ class Legion(override var name: String, private val cohorts: ArrayList<Cohort>) 
     }
 
     override fun toString(): String {
-        return "<Legion name=\"${name}\" level=${level} xp:${xp} stats(h,me,r,mo,d):(${health},${melee},${ranged},${movement},${defense}) banner:${standard.name} cohortCount:${cohorts.size}>"
+        return name
     }
 
     override fun calculateStats() {

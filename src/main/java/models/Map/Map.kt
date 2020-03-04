@@ -31,7 +31,7 @@ class Map {
      * Iterates over the provided JSON array.
      * Each item in the array should be in the form "[city, city, distance]"
      * Checks the dictionary of cities, and if a city of either name doesn't exist it creates it.
-     * Creates a road between the two cities by storing them in both cities.
+     * Creates a road between the two cities by storing it in both cities.
      */
     private fun connectCities(citySpecifications: JsonArray){
         for (i in 0 until citySpecifications.size()) {
@@ -63,13 +63,21 @@ class Map {
                 city2 = this.createCity(cityName2)
                 this.cities[cityName2] = city2
             }
-//            /Users/mithorns1/Documents/Personal/Github/RomanConquest/src/main/java/models/Map/MapSpecifications.json
+
             // Now, we will always have the two city objects
             // Create the new road, then give both cities a reference to it
             val road = Road(city1, city2, length)
             city1.addRoad(road)
             city2.addRoad(road)
         }
+    }
+
+    /**
+     * Accepts a city name.
+     * Returns the city associated with that name.
+     */
+    fun getCity(cityName: String): City {
+        return cities[cityName]!!
     }
 
     private fun createCity(cityName: String): City {

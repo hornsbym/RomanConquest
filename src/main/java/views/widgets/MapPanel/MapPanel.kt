@@ -5,20 +5,15 @@
  */
 package views.widgets.MapPanel
 
-import javafx.event.EventHandler
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import javafx.scene.input.MouseEvent
-import javafx.scene.layout.Pane
-import javafx.scene.layout.StackPane
-import models.Managers.PlayerManager
+import javafx.scene.layout.*
 import models.Map.Map
-import views.widgets.ControlPanel.ControlPanelManager
-import views.widgets.InfoPanel.InfoPanelManager
 import java.io.File
 
 class MapPanel(private val map: Map): StackPane() {
     private val cityMarkers = ArrayList<CityMarker>()
+    private val roadMarkers = ArrayList<RoadMarker>()
     var mapWidth = 0.0
     var mapHeight = 0.0
 
@@ -51,7 +46,9 @@ class MapPanel(private val map: Map): StackPane() {
 
         markerPane.minWidth = mapWidth
         markerPane.minHeight = mapHeight
+//        markerPane.background = Background(BackgroundFill(Paint.valueOf("999999"), CornerRadii.EMPTY, Insets.EMPTY))
 
+        markerPane.children.addAll(this.roadMarkers)
         markerPane.children.addAll(this.cityMarkers)
 
         children.add(markerPane)
@@ -66,7 +63,12 @@ class MapPanel(private val map: Map): StackPane() {
 
         for (key in this.map.cities.keys) {
             val city = this.map.cities[key]!!
-            this.cityMarkers.add(CityMarker(city, markerImg))
+            val cityMarker = CityMarker(city, markerImg)
+            this.cityMarkers.add(cityMarker)
+
+            for(road in city.roads){
+                this.roadMarkers.add(RoadMarker(road))
+            }
         }
     }
 }

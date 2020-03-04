@@ -8,5 +8,5 @@ import models.Map.City
 
 class Player(val name: String) {
     var selectedCity: City? = null
-    var gold = 100
+    var gold = 500
 }

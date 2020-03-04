@@ -14,9 +14,11 @@ import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.Region
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import javafx.scene.text.Text
 import models.Managers.PlayerManager
 import models.Map.City
+import views.AppManager
 import views.widgets.ControlPanel.ControlPanelManager
 import views.widgets.InfoPanel.InfoPanelManager
 
@@ -25,12 +27,6 @@ class CityMarker(val city: City, val marker: Image): Region() {
 
     init {
         this.setCoords()
-
-        this.onMouseEntered = EventHandler<MouseEvent>(fun(event: MouseEvent): Unit {
-            var label = Label(city.name)
-        })
-
-        this.children.add(VBox())
     }
 
     /**
@@ -57,8 +53,9 @@ class CityMarker(val city: City, val marker: Image): Region() {
         // Updates the info panel when the marker is clicked
         markerImgView.onMousePressed = EventHandler<MouseEvent> (fun (event: MouseEvent): Unit {
             PlayerManager.player.selectedCity = city
-            InfoPanelManager.refreshSelectedCity()
+            AppManager.refreshAllPanels()
             ControlPanelManager.toSelectedCityScreen()
+            InfoPanelManager.toSelectedCityScreen()
         })
 
         // Adds the marker and the text label to the layout
@@ -76,7 +73,8 @@ class CityMarker(val city: City, val marker: Image): Region() {
      */
     private fun setCoords() {
         this.coords = CityCoords.coords[this.city.name]!!
-        this.layoutX = coords.first.toDouble() - 16.0
-        this.layoutY = coords.second.toDouble() - 16.0
+
+        this.layoutX = coords.first.toDouble() - 8
+        this.layoutY = coords.second.toDouble() - 8
     }
 }

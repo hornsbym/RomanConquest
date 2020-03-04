@@ -15,7 +15,7 @@ class Troop(override var name: String, override var level: Int, override var xp:
     }
 
     override fun toString(): String {
-        return "<Troop name=\"${name}\" level=${level} xp:${xp} century:\"${century?.name}\" stats(h,me,r,mo,d):(${health}, ${melee}, ${ranged}, ${movement}, ${defense}) class=${classification}>"
+        return "${name}"
     }
 
     /**
@@ -26,7 +26,8 @@ class Troop(override var name: String, override var level: Int, override var xp:
         ranged = TroopBaseStats.INFANTRY_RANGED
         movement = TroopBaseStats.INFANTRY_MOVEMENT
         defense = TroopBaseStats.INFANTRY_DEFENSE
-        cost = TroopCosts.INFANTRY
+        purchaseCost = TroopCosts.INFANTRY
+        trainingCost = TroopCosts.INFANTRY_TRAINING_COST
     }
 
     /**
@@ -37,7 +38,8 @@ class Troop(override var name: String, override var level: Int, override var xp:
         ranged = TroopBaseStats.RANGED_RANGED
         movement = TroopBaseStats.RANGED_MOVEMENT
         defense = TroopBaseStats.RANGED_DEFENSE
-        cost = TroopCosts.RANGED
+        purchaseCost = TroopCosts.RANGED
+        trainingCost = TroopCosts.RANGED_TRAINING_COST
     }
 
     /**
@@ -48,6 +50,7 @@ class Troop(override var name: String, override var level: Int, override var xp:
         ranged = TroopBaseStats.CAVALRY_RANGED
         movement = TroopBaseStats.CAVALRY_MOVEMENT
         defense = TroopBaseStats.CAVALRY_DEFENSE
-        cost = TroopCosts.CAVALRY
+        purchaseCost = TroopCosts.CAVALRY
+        trainingCost = TroopCosts.CAVALRY_TRAINING_COST
     }
 }

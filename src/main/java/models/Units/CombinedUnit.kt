@@ -5,7 +5,7 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 // <out Unit> I think means "Accept any subclass of type Unit"?
-abstract class CombinedUnit (override var name: String, private var units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
+abstract class CombinedUnit (override var name: String, var units: ArrayList<out Unit>): Unit(name,1, 0), CombinedUnitInterface {
     override var health = TroopBaseStats.TROOP_HEALTH
     override var melee  = 0
     override var ranged = 0
@@ -149,5 +149,13 @@ abstract class CombinedUnit (override var name: String, private var units: Array
      */
     fun removeUnit(unitForRemoval: Unit) {
         units.remove(unitForRemoval)
+    }
+
+    /**
+     * Returns the list of units that comprises the combined unit.
+     * This is used when a combined unit is defeated, or when the player chooses to break up a combined unit.
+     */
+    fun disband(): ArrayList<out Unit> {
+        return this.units
     }
 }

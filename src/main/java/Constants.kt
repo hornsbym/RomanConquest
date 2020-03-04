@@ -19,5 +19,8 @@ class Constants {
         const val COHORT_SIZE_UPPER_BOUND = 6
         const val LEGION_SIZE_LOWER_BOUND = 6
         const val LEGION_SIZE_UPPER_BOUND = 10
+
+        // XP training boost
+        const val TRAINING_BOOST = 50
     }
 }

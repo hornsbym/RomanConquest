@@ -20,17 +20,18 @@ import javafx.scene.control.ChoiceBox
 import javafx.scene.layout.BorderPane
 import models.Game
 import models.GameSettings
+import models.Managers.GameManager
 import views.widgets.ControlPanel.ControlPanelManager
 import views.widgets.InfoPanel.InfoPanelManager
 import views.widgets.MapPanel.MapPanel
 import views.widgets.InputBox
 import views.widgets.MapPanel.MapPanelManager
 import views.widgets.PlayerPanel.PlayerPanel
+import views.widgets.PlayerPanel.PlayerPanelManager
 import java.awt.Point
 
 class App: Application() {
     lateinit var primaryStage: Stage
-    lateinit var game: Game
 
     override fun start(primaryStage: Stage) {
         this.primaryStage = primaryStage
@@ -76,13 +77,16 @@ class App: Application() {
         grid.add(settingsChoicebox, 1, 1)
         grid.add(submitButton, 1, 2)
 
+        // Prevents window resizing
+        this.primaryStage.isResizable = false
+
         // Display the window and its contents:
         this.primaryStage.show()
     }
 
     private fun startPhase1(name: String) {
         // Create a new game
-        game = Game(name, GameSettings())
+        var newGame = Game(name, GameSettings())
 
         // Create a blank grid and a new scene.
         var root = BorderPane()
@@ -90,12 +94,15 @@ class App: Application() {
         // Change the visible scene to the new one.
         var scene = Scene(root)
 
+
         // Initialize singleton manager classes
-        MapPanelManager.setMap(game.map)
+        GameManager.game = newGame
+        PlayerPanelManager.playerPanel = PlayerPanel()
+        MapPanelManager.setMap(GameManager.game.map)
 
         // Create UI panels
         var mapPanel = MapPanelManager.mapPanel
-        var playerPanel = PlayerPanel()
+        var playerPanel = PlayerPanelManager.playerPanel
         var infoPanel = InfoPanelManager.infopanel
         var controlPanel = ControlPanelManager.controlPanel
 

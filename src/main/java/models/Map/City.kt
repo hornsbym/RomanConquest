@@ -28,4 +28,51 @@ class City(val name: String) {
     fun addFriendlyUnit(unit: Unit){
         this.friendlyUnits.add(unit)
     }
+
+    /**
+     * Adds an array list of units to the list of friendly units
+     */
+    fun addFriendlyUnits(units: ArrayList<Unit>) {
+        friendlyUnits.addAll(units)
+    }
+
+    /**
+     * Removes the given units from the list of friendly units.
+     */
+    fun removeFriendlyUnits(units: ArrayList<Unit>) {
+        friendlyUnits.removeAll(units)
+    }
+
+    /**
+     * Gets only the cities connected to this city by a road.
+     */
+    fun getAdjacentCities(): ArrayList<City> {
+        val adjCities = ArrayList<City>()
+
+        // Iterates over all roads connected to the city.
+        // Only returns cities attached to those roads if it's not this city.
+        for (road in roads) {
+            if (road.city1 !== this){
+                adjCities.add(road.city1)
+            } else if (road.city2 !== this) {
+                adjCities.add(road.city2)
+            }
+        }
+
+        return adjCities
+    }
+
+    /**
+     * Moves units from one city to an adjacent city.
+     */
+    fun transferUnits(units: ArrayList<Unit>, targetCity: City) {
+        for (unit in units){
+            if (this.friendlyUnits.contains(unit)){
+                targetCity.addFriendlyUnit(unit)
+                this.friendlyUnits.remove(unit)
+            }
+        }
+//        targetCity.addFriendlyUnits(units)
+//        removeFriendlyUnits(units)
+    }
 }
