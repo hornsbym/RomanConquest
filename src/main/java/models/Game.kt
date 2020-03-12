@@ -5,18 +5,16 @@
  */
 package models
 
+import models.Factories.TroopFactory
+import models.Managers.*
 import models.Map.Map
-import models.Managers.PlayerManager
-import models.Managers.TrainingManager
-import models.Managers.UnitCombiner
 import models.Map.City
 import models.Units.CombinedUnit
-import models.Units.Troop
 import models.Units.Unit
 
 class Game (var name: String, var settings: GameSettings) {
     val map = Map()
-    val turn = 0
+    var turn = 0
 
     init {
         PlayerManager.createPlayer(name)
@@ -26,37 +24,57 @@ class Game (var name: String, var settings: GameSettings) {
      * Allows players to purchase Troops if they have enough gold.
      * Doesn't do anything if they don't.
      */
-    fun purchaseTroops(troop: Troop, number: Int) {
+    fun purchaseTroops(troopConstant: Int, number: Int) {
         val availableGold = PlayerManager.player.gold
-        if (availableGold >= (troop.purchaseCost * number)) {
-            PlayerManager.player.selectedCity!!.addFriendlyUnit(troop)
-            PlayerManager.player.gold -= troop.purchaseCost
+
+        // Behaves differently based on which troop is being created
+        when (troopConstant) {
+            Constants.INFANTRY -> {
+                if (availableGold >= (TroopCosts.INFANTRY * number)) {
+                    TroopFactory.newPlayerInfantry()
+                    PlayerManager.player.gold -= TroopCosts.CAVALRY
+                }
+            }
+            Constants.RANGED -> {
+                if (availableGold >= (TroopCosts.RANGED * number)) {
+                    TroopFactory.newPlayerRanged()
+                    PlayerManager.player.gold -= TroopCosts.CAVALRY
+                }
+            }
+            Constants.CAVALRY -> {
+                if (availableGold >= (TroopCosts.CAVALRY * number)) {
+                    TroopFactory.newPlayerCavalry()
+                    PlayerManager.player.gold -= TroopCosts.CAVALRY
+                }
+            }
+            else -> {
+                throw Error("Unrecognized troop constant")
+            }
         }
+
+        GameManager.game.map.updateCityTroopLists()
     }
 
     /**
-     * Allows players to move units from one city to another.
+     * Allows players to move units from one city to another, if they have remaining moves.
+     * Deducts their remaining moves by 1.
      */
     fun moveUnits(units: ArrayList<Unit>, city: City) {
         // Assign to variables for readability
-        val selectedCity = PlayerManager.player.selectedCity!!
-        val targetCity = city
+        val targetCity = city.name
 
         // Remove from the current city, add to the target city
-        targetCity.addFriendlyUnits(units)
-        selectedCity.removeFriendlyUnits(units)
+        UnitManager.moveUnits(units, targetCity)
     }
 
     /**
      * Allows players to combine units.
      */
     fun combineUnits(units: ArrayList<Unit>) {
-        val combinedUnit = UnitCombiner.combineUnits(units)
-        if (combinedUnit != null) {
-            val selectedCity = PlayerManager.player.selectedCity!!
-            selectedCity.removeFriendlyUnits(units)
-            selectedCity.addFriendlyUnit(combinedUnit)
-        }
+        UnitCombiner.combineUnits(units)
+
+        // Updates the map if there's been any changes
+        GameManager.game.map.updateCityTroopLists()
     }
 
     /**
@@ -84,11 +102,18 @@ class Game (var name: String, var settings: GameSettings) {
         }
     }
 
+    fun battle(attackingUnits: ArrayList<Unit>, defendingUnits: ArrayList<Unit>) {
+        BattleManager.fullBattle(attackingUnits, defendingUnits)
+    }
+
     /**
      * Performs all end-turn game logic.
      * Takes training gold from the player, decreases move count for travelling units, and creates and moves enemy units.
      */
     fun nextTurn() {
         TrainingManager.trainAll()
+        UnitManager.resetMoves()
+        EnemyManager.addEnemiesToMap()
+        turn++
     }
 }

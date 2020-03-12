@@ -15,8 +15,8 @@ object GameManager {
     /**
      * Allows users to purchase troops
      */
-    fun purchaseTroops(troop: Troop, number: Int = 1) {
-        game.purchaseTroops(troop, number)
+    fun purchaseTroops(troopConstant: Int, number: Int = 1) {
+        game.purchaseTroops(troopConstant, number)
     }
 
     /**
@@ -38,6 +38,13 @@ object GameManager {
      */
     fun disbandUnits(combinedUnits: ArrayList<Unit>) {
         game.disbandUnits(combinedUnits)
+    }
+
+    /**
+     * Allows players to go to battle
+     */
+    fun battle(attackingUnits: ArrayList<Unit>, defendingUnits: ArrayList<Unit>) {
+        game.battle(attackingUnits, defendingUnits)
     }
 
     /**

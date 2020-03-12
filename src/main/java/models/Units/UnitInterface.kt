@@ -16,4 +16,7 @@ interface UnitInterface {
     var trainingCost: Int
     var xp: Int
     var level: Int
+
+    var owner: String
+    var currentCity: String
 }

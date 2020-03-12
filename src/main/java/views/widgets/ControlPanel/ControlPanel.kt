@@ -9,6 +9,13 @@ import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
 import models.Units.Unit
 import views.widgets.ControlPanel.PanelScreens.*
+import views.widgets.ControlPanel.PanelScreens.Battle.GoToBattleScreen
+import views.widgets.ControlPanel.PanelScreens.CombineUnits.CombineUnitsScreen
+import views.widgets.ControlPanel.PanelScreens.DisbandUnits.DisbandUnitsScreen
+import views.widgets.ControlPanel.PanelScreens.MoveUnits.MoveUnitsScreen
+import views.widgets.ControlPanel.PanelScreens.MoveUnits.SelectCityForMoveScreen
+import views.widgets.ControlPanel.PanelScreens.PurchaseTroops.PurchaseTroopsScreen
+import views.widgets.ControlPanel.PanelScreens.TrainUnits.ManageTrainingScreen
 import views.widgets.MapPanel.MapPanelManager
 
 class ControlPanel: StackPane() {
@@ -43,11 +50,15 @@ class ControlPanel: StackPane() {
         this.children[1] = MoveUnitsScreen()
     }
 
-    fun toSelectCityForMoveScreen(units: ArrayList<Unit>){
+    fun toSelectCityForMoveScreen(units: ArrayList<Unit>?){
         this.children[1] = SelectCityForMoveScreen(units)
     }
 
     fun toTrainTroopsScreen() {
         this.children[1] = ManageTrainingScreen()
+    }
+
+    fun toBattleScreen() {
+        this.children[1] = GoToBattleScreen()
     }
 }

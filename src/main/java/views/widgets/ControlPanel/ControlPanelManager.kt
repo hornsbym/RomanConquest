@@ -6,6 +6,8 @@ object ControlPanelManager {
     var controlPanel = ControlPanel()
     var currentScreen = "DEFAULT"
 
+    var selectionUnits: ArrayList<Unit>? = null
+
     fun toSelectedCityScreen() {
         currentScreen = "SELECTED_CITY"
         controlPanel.toSelectedCityScreen()
@@ -36,14 +38,19 @@ object ControlPanelManager {
         controlPanel.toMoveUnitsScreen()
     }
 
-    fun toSelectCityForMoveScreen(units: ArrayList<Unit>) {
+    fun toSelectCityForMoveScreen() {
         currentScreen = "SELECT_ADJACENT_CITY"
-        controlPanel.toSelectCityForMoveScreen(units)
+        controlPanel.toSelectCityForMoveScreen(selectionUnits)
     }
 
     fun toTrainTroopsScreen() {
         currentScreen = "TRAINING"
         controlPanel.toTrainTroopsScreen()
+    }
+
+    fun toBattleScreen() {
+        currentScreen = "BATTLE"
+        controlPanel.toBattleScreen()
     }
 
     fun refresh() {
@@ -53,8 +60,9 @@ object ControlPanelManager {
             "COMBINE_UNITS" -> toCombineScreen()
             "DISBAND_UNITS" -> toDisbandScreen()
             "MOVE_UNITS" -> toMoveUnitsScreen()
-            "SELECT_ADJACENT_CITY" -> toSelectCityForMoveScreen(ArrayList<Unit>())
+            "SELECT_ADJACENT_CITY" -> toSelectCityForMoveScreen()
             "TRAINING" -> toTrainTroopsScreen()
+            "BATTLE" -> toBattleScreen()
             else -> toDefaultScreen()
         }
     }

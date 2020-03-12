@@ -18,13 +18,15 @@ import views.AppManager
 import views.widgets.ControlPanel.CheckBoxes.UnitCheckbox
 import views.widgets.ControlPanel.ControlPanelManager
 
-open class SelectMultipleUnitsScreen(units: ArrayList<Unit>, var buttonText: String = "Submit", var createBackButton: Boolean = true): VBox() {
+open class SelectMultipleUnitsScreen(units: ArrayList<Unit>, var buttonText: String = "Submit", var createBackButton: Boolean = true, createActionButton: Boolean = true): VBox() {
     open var unitValues = units
     open var unitCheckboxes = ArrayList<UnitCheckbox>()
 
     init {
         createOptions()
-        createActionButton()
+        if (createActionButton) {
+            createActionButton()
+        }
         if (createBackButton) {
             createBackButton()
         }

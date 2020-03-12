@@ -2,12 +2,13 @@
  * @author Mitchell Hornsby
  * Allows users to add and remove troops from training.
  */
-package views.widgets.ControlPanel.PanelScreens
+package views.widgets.ControlPanel.PanelScreens.TrainUnits
 
 import javafx.scene.layout.VBox
 import models.Managers.PlayerManager
 import models.Managers.TrainingManager
 import models.Units.Unit
+import views.widgets.ControlPanel.PanelScreens.SelectMultipleUnitsScreen
 
 class ManageTrainingScreen: VBox() {
     val selectedCityUnits = PlayerManager.player.selectedCity!!.friendlyUnits

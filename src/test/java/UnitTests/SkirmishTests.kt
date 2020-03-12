@@ -1,6 +1,6 @@
 package UnitTests
 
-import models.Factories.SkirmishManagerFactory
+import future.SkirmishManagerFactory
 import models.Factories.TroopFactory
 import UnitTests.UnitTestUtils.formCenturyOfSize
 import UnitTests.UnitTestUtils.formCohortOfSize
@@ -12,8 +12,8 @@ class SkirmishTests {
 
     @Test
     fun testTroopSkirmish() {
-        val unit1 = TroopFactory.newCavalry()
-        val unit2 = TroopFactory.newInfantry()
+        val unit1 = TroopFactory.newPlayerCavalry()
+        val unit2 = TroopFactory.newPlayerInfantry()
 
         println("Before: ")
         println(unit1)
@@ -48,7 +48,7 @@ class SkirmishTests {
 
     @Test
     fun testTroopVsCenturySkirmish() {
-        val unit1 = TroopFactory.newInfantry()
+        val unit1 = TroopFactory.newPlayerInfantry()
         val unit2 = formCenturyOfSize(10)!!
 
         println("Before: ")

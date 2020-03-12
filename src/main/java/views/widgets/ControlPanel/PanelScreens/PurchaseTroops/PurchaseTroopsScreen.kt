@@ -2,7 +2,7 @@
  * @author Mitchell Hornsby
  * Control panel that facilitates the purchasing of Troops
  */
-package views.widgets.ControlPanel.PanelScreens
+package views.widgets.ControlPanel.PanelScreens.PurchaseTroops
 
 import javafx.event.EventHandler
 import javafx.scene.control.Button
@@ -13,7 +13,6 @@ import models.Managers.GameManager
 import models.Managers.PlayerManager
 import views.AppManager
 import views.widgets.ControlPanel.ControlPanelManager
-import views.widgets.InfoPanel.InfoPanelManager
 
 class PurchaseTroopsScreen: VBox() {
     init {
@@ -25,15 +24,15 @@ class PurchaseTroopsScreen: VBox() {
 
         // Add functionality to buttons
         infantryButton.onMouseClicked = EventHandler<MouseEvent>(fun (event: MouseEvent) {
-            GameManager.purchaseTroops(TroopFactory.newInfantry())
+            GameManager.purchaseTroops(Constants.INFANTRY)
             AppManager.refreshAllPanels()
         })
         rangedButton.onMouseClicked = EventHandler<MouseEvent>(fun (event: MouseEvent) {
-            GameManager.purchaseTroops(TroopFactory.newRanged())
+            GameManager.purchaseTroops(Constants.RANGED)
             AppManager.refreshAllPanels()
         })
         cavalryButton.onMouseClicked = EventHandler<MouseEvent>(fun (event: MouseEvent) {
-            GameManager.purchaseTroops(TroopFactory.newCavalry())
+            GameManager.purchaseTroops(Constants.CAVALRY)
             AppManager.refreshAllPanels()
         })
         backButton.onMouseClicked = EventHandler<MouseEvent>(fun (event: MouseEvent) {

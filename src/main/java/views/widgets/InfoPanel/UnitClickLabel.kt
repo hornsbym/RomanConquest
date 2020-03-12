@@ -1,3 +1,7 @@
+/**
+ * @author Mitchell Hornsby
+ * This panel shows information about what the user has clicked on.
+ */
 package views.widgets.InfoPanel
 
 import javafx.event.EventHandler
@@ -18,7 +22,8 @@ class UnitClickLabel(val unit: Unit): Label(unit.toString()) {
         })
 
         this.onMousePressed = EventHandler<MouseEvent> (fun(event: MouseEvent) {
-            InfoPanelManager.toViewUnitScreen(unit)
+            InfoPanelManager.previewUnit = unit
+            InfoPanelManager.toViewUnitScreen()
         })
     }
 }

@@ -28,19 +28,18 @@ object UnitCombiner {
      * If the units can be combined, combines them and returns the combined unit.
      * If the units cannot be combined, does nothing.
      */
-    fun combineUnits(units: ArrayList<in Unit>): CombinedUnit? {
+    fun combineUnits(units: ArrayList<in Unit>) {
         if (units.isEmpty()) {
-            return null
+            null
         } else if (!unitsMatch(units)){
-            return null
+            null
         } else {
             when (units[0]!!.javaClass) {
-                Troop::class.java -> return formCentury(units as ArrayList<Troop>)
-                Century::class.java -> return formCohort(units as ArrayList<Century>)
-                Cohort::class.java -> return formLegion(units as ArrayList<Cohort>)
+                Troop::class.java -> formCentury(units as ArrayList<Troop>)
+                Century::class.java -> formCohort(units as ArrayList<Century>)
+                Cohort::class.java -> formLegion(units as ArrayList<Cohort>)
             }
         }
-        return null
     }
 
     /**
@@ -65,14 +64,25 @@ object UnitCombiner {
      */
     fun formCentury(troopList: ArrayList<Troop>) : Century? {
         if (troopList.size in Constants.CENTURY_SIZE_LOWER_BOUND..Constants.CENTURY_SIZE_UPPER_BOUND) {
+            // Increment the number of centuries in the game
             centuryCount++
+
+            // Generate a name for the century
             val name = generateNumberAndOrdinal(centuryCount) + " Century"
 
-            val newCentury = Century(name, troopList)
+            // Create a new century
+            val newCentury = Century(name, troopList, troopList[0].owner, troopList[0].currentCity)
 
+            // Tells the troops which century it belongs to
             for (troop in troopList) {
                 troop.century = newCentury
             }
+
+            // Removes the troops from the unit manager
+            UnitManager.removeUnits(troopList)
+
+            // Adds the newly combined unit to the unit manager
+            UnitManager.addUnit(newCentury)
 
             return newCentury
         } else {
@@ -89,11 +99,15 @@ object UnitCombiner {
             cohortCount++
             val name = generateNumberAndOrdinal(cohortCount) + " Cohort"
 
-            val newCohort = Cohort(name, centuryList)
+            val newCohort = Cohort(name, centuryList, centuryList[0].owner, centuryList[0].currentCity)
 
             for (century in centuryList) {
                 century.cohort = newCohort
             }
+
+            UnitManager.removeUnits(centuryList)
+
+            UnitManager.addUnit(newCohort)
 
             return newCohort
         } else {
@@ -109,7 +123,18 @@ object UnitCombiner {
         if (cohortList.size in Constants.LEGION_SIZE_LOWER_BOUND..Constants.LEGION_SIZE_UPPER_BOUND) {
             legionCount++
             val name = generateNumberAndOrdinal(legionCount) + " Legion"
-            return Legion(name, cohortList)
+
+            val newLegion = Legion(name, cohortList, cohortList[0].owner, cohortList[0].currentCity)
+
+            for (cohort in cohortList) {
+                cohort.legion = newLegion
+            }
+
+            UnitManager.removeUnits(cohortList)
+
+            UnitManager.addUnit(newLegion)
+
+            return newLegion
         } else {
             return null
         }

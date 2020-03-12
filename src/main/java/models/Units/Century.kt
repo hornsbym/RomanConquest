@@ -3,7 +3,7 @@ package models.Units
 import models.Modifiers.Banners.Banner
 import models.Modifiers.Banners.EmptyBanner
 
-class Century(override var name: String , private var troops: ArrayList<Troop>): CombinedUnit(name, troops) {
+class Century(override var name: String , private var troops: ArrayList<Troop>, override var owner: String, override var currentCity: String): CombinedUnit(name, troops, owner, currentCity) {
     var cohort: Cohort? = null
 
     // Holds banner info here... re-calculates stats every time banner changes
@@ -18,7 +18,7 @@ class Century(override var name: String , private var troops: ArrayList<Troop>):
     }
 
     override fun toString(): String {
-        return name
+        return "${owner}, ${name}"
     }
 
     override fun calculateStats() {
@@ -72,6 +72,5 @@ class Century(override var name: String , private var troops: ArrayList<Troop>):
         }
 
         this.troops = newTroopList
-        println("New troops in ${this.name}: " + this.troops)
     }
 }

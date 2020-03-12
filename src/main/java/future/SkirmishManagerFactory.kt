@@ -1,6 +1,5 @@
-package models.Factories
+package future
 
-import models.Managers.MeleeSkirmishManager
 import models.Units.Unit
 
 /**

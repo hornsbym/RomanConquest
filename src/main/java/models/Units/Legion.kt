@@ -2,7 +2,8 @@ package models.Units
 
 import models.Modifiers.Standards.EmptyStandard
 
-class Legion(override var name: String, private val cohorts: ArrayList<Cohort>) : CombinedUnit(name, cohorts) {
+class Legion(override var name: String, private val cohorts: ArrayList<Cohort>, override var owner: String,
+             override var currentCity: String) : CombinedUnit(name, cohorts, owner, currentCity) {
     var standard = EmptyStandard()
         set(standard)  {
             field = standard
@@ -14,7 +15,7 @@ class Legion(override var name: String, private val cohorts: ArrayList<Cohort>) 
     }
 
     override fun toString(): String {
-        return name
+        return "${owner}, ${name}"
     }
 
     override fun calculateStats() {

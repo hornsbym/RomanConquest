@@ -1,10 +1,11 @@
-package views.widgets.InfoPanel
+package views.widgets.InfoPanel.Screens
 
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import models.Managers.PlayerManager
+import views.widgets.InfoPanel.UnitList
 
-class CityOverviewScreen: VBox() {
+class CityOverviewScreen(): VBox() {
     init {
         val selectedCity = PlayerManager.player.selectedCity!!
         spacing = 15.0

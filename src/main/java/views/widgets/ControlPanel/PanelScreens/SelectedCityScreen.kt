@@ -16,7 +16,7 @@ class SelectedCityScreen: VBox() {
         this.children.add(DisbandButton())
         this.children.add(MoveButton())
         this.children.add(TrainButton())
-        this.children.add(Button("Go to battle"))
-        this.children.add(Button("End turn"))
+        this.children.add(BattleButton())
+        this.children.add(EndTurnButton())
     }
 }

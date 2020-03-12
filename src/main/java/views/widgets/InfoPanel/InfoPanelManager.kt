@@ -5,12 +5,13 @@
  */
 package views.widgets.InfoPanel
 
-import models.Managers.PlayerManager
 import models.Units.Unit
 
 object InfoPanelManager {
     var currentScreen = "DEFAULT"
     val infopanel = InfoPanel()
+
+    var previewUnit: Unit? = null
 
     fun toSelectedCityScreen() {
         currentScreen = "SELECTED_CITY"
@@ -22,15 +23,15 @@ object InfoPanelManager {
         infopanel.toDefaultScreen()
     }
 
-    fun toViewUnitScreen(unit: Unit) {
+    fun toViewUnitScreen() {
         currentScreen = "VIEW_UNIT"
-        infopanel.toViewUnitScreen(unit)
+        infopanel.toViewUnitScreen(previewUnit)
     }
 
     fun refresh() {
         when (currentScreen) {
             "DEFAULT" -> toDefaultScreen()
-//            "VIEW_UNIT" -> toViewUnitScreen()
+            "VIEW_UNIT" -> toViewUnitScreen()
             "SELECTED_CITY" -> toSelectedCityScreen()
         }
     }

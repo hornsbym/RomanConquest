@@ -21,12 +21,6 @@ class Map {
         connectCities(citySpecificationsJSON)
     }
 
-    fun getMap(): HashMap<String, City> {
-        var shallowClone = HashMap<String, City>()
-        shallowClone.putAll(this.cities)
-        return shallowClone
-    }
-
     /**
      * Iterates over the provided JSON array.
      * Each item in the array should be in the form "[city, city, distance]"
@@ -80,7 +74,20 @@ class Map {
         return cities[cityName]!!
     }
 
+
+    /**
+     * Creates a city from a city name
+     */
     private fun createCity(cityName: String): City {
         return City(cityName)
+    }
+
+    /**
+     * Updates the troops in each city.
+     */
+    fun updateCityTroopLists() {
+        for (cityName in cities.keys) {
+            cities[cityName]!!.getTroops()
+        }
     }
 }

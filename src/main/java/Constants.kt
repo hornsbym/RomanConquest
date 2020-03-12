@@ -22,5 +22,7 @@ class Constants {
 
         // XP training boost
         const val TRAINING_BOOST = 50
+        const val TROOP_LEVEL_LIMIT  = 5
+        const val LEVEL_UP_REQUIREMENT_SCALE= 1.2
     }
 }

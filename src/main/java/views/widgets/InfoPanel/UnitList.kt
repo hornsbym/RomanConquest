@@ -8,15 +8,17 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.layout.VBox
 import models.Units.Unit
 
-class UnitList(units: ArrayList<out Unit>): ScrollPane() {
-    val vbox = VBox()
+class UnitList(val units: ArrayList<out Unit>): ScrollPane() {
     init {
         this.minViewportHeight = 200.0
         this.maxHeight = 200.0
 
+        val vbox = VBox()
+
         for (unit in units) {
             vbox.children.add(UnitClickLabel(unit))
         }
-        content = vbox
+
+        this.content = vbox
     }
 }

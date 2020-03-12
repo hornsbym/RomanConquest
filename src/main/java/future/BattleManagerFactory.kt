@@ -1,4 +1,4 @@
-package models.Factories
+package future
 
 /**
  * Singleton object for creating new Battles.

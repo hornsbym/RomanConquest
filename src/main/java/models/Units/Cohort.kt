@@ -2,7 +2,8 @@ package models.Units
 
 import models.Modifiers.Honors.EmptyHonor
 
-class Cohort(override var name: String, private var centuries: ArrayList<Century>) : CombinedUnit(name, centuries) {
+class Cohort(override var name: String, private var centuries: ArrayList<Century>, override var owner: String,
+             override var currentCity: String) : CombinedUnit(name, centuries, owner, currentCity) {
     var legion: Legion? = null
 
     var honor = EmptyHonor()
@@ -16,7 +17,7 @@ class Cohort(override var name: String, private var centuries: ArrayList<Century
     }
 
     override fun toString(): String {
-        return name
+        return "${owner}, ${name}"
     }
 
     override fun calculateStats() {

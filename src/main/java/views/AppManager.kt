@@ -1,6 +1,6 @@
 /**
  * @author Mitchell Hornsby
- * Singleton class for performing app-level operations.
+ * Singleton class for performing app-level operations, such as refreshing multiple panels at once.
  */
 package views
 

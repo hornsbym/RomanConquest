@@ -11,8 +11,8 @@ class TrainingTests {
     fun testCostPrediction() {
         TrainingManager.addUnit(UnitTestUtils.formCenturyOfSize(6)!!)
         TrainingManager.addUnit(UnitTestUtils.formCohortOfSize(3, 6)!!)
-        TrainingManager.addUnit(TroopFactory.newInfantry())
-        TrainingManager.addUnit(TroopFactory.newInfantry())
+        TrainingManager.addUnit(TroopFactory.newPlayerInfantry())
+        TrainingManager.addUnit(TroopFactory.newPlayerInfantry())
 
         println(TrainingManager.getCostPerTurn())
     }

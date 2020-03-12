@@ -5,7 +5,9 @@
 package models.Managers
 
 import models.Units.CombinedUnit
+import models.Units.Troop
 import models.Units.Unit
+import kotlin.math.roundToInt
 
 object TrainingManager {
     val unitsInTraining = ArrayList<Unit>()
@@ -96,6 +98,22 @@ object TrainingManager {
             }
         } else {
             unit.xp += Constants.TRAINING_BOOST
+            levelUpTroop(unit as Troop)
+        }
+    }
+
+    /**
+     * If the troop has gained enough experience, level the troop up.
+     * Doesn't do anything if the troop has reached the level limit.
+     */
+    fun levelUpTroop(troop: Troop) {
+        // If the troop hasn't met the level limit and has enough experience points to level up
+        if (troop.level < Constants.TROOP_LEVEL_LIMIT && troop.xp >= troop.levelUpRequirement) {
+            troop.levelUp()
+        }
+        // If the troop has reached the maximum level, sets its xp to the highest amount it can be
+        else if (troop.level == Constants.TROOP_LEVEL_LIMIT) {
+            troop.xp = troop.levelUpRequirement
         }
     }
 }

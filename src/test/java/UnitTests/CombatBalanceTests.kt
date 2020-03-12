@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class CombatBalanceTests {
     @Test
     fun compareSmallestInfantry() {
-        val unit = TroopFactory.newInfantry()
+        val unit = TroopFactory.newPlayerInfantry()
         val century = formCenturyOfSize(Constants.CENTURY_SIZE_LOWER_BOUND)
         val cohort = formCohortOfSize(Constants.COHORT_SIZE_LOWER_BOUND, Constants.CENTURY_SIZE_LOWER_BOUND)
 
@@ -19,7 +19,7 @@ class CombatBalanceTests {
 
     @Test
     fun compareLargestInfantry() {
-        val unit = TroopFactory.newInfantry()
+        val unit = TroopFactory.newPlayerInfantry()
         val century = formCenturyOfSize(Constants.CENTURY_SIZE_UPPER_BOUND)
         val cohort = formCohortOfSize(Constants.COHORT_SIZE_UPPER_BOUND, Constants.CENTURY_SIZE_UPPER_BOUND)
 

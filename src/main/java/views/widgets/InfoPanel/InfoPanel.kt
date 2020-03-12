@@ -10,6 +10,8 @@ import javafx.scene.paint.Color
 import javafx.scene.shape.Rectangle
 import models.Managers.PlayerManager
 import models.Units.Unit
+import views.widgets.InfoPanel.Screens.CityOverviewScreen
+import views.widgets.InfoPanel.Screens.ViewUnitScreen
 import views.widgets.MapPanel.MapPanelManager
 
 
@@ -30,7 +32,7 @@ class InfoPanel : StackPane(){
         this.children[1] = VBox()
     }
 
-    fun toViewUnitScreen(unit: Unit) {
+    fun toViewUnitScreen(unit: Unit?) {
         this.children[1] = ViewUnitScreen(unit)
     }
 }

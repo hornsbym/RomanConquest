@@ -5,6 +5,8 @@
  */
 package models.Map
 
+import models.Managers.PlayerManager
+import models.Managers.UnitManager
 import models.Units.Unit
 
 class City(val name: String) {
@@ -14,6 +16,28 @@ class City(val name: String) {
 
     // Keep track of all roads connected to the city
     val roads = ArrayList<Road>()
+
+    /**
+     * Gets the troops that are supposed to be in the city.
+     * This is found in the TroopManager.
+     */
+    fun getTroops () {
+        val playerName = PlayerManager.player.name
+
+        // Empties out both arrays
+        friendlyUnits.clear()
+        hostileUnits.clear()
+
+        // Gets all troops from the Troop Manager and sorts them by owner
+        // Player's troops go in one list, all enemy troops go in the other.
+        for (unit in UnitManager.allUnits[name]!!) {
+            if (unit.owner == playerName) {
+                friendlyUnits.add(unit)
+            } else {
+                hostileUnits.add(unit)
+            }
+        }
+    }
 
     /**
      * Adds a new road between two cities.
@@ -33,7 +57,21 @@ class City(val name: String) {
      * Adds an array list of units to the list of friendly units
      */
     fun addFriendlyUnits(units: ArrayList<Unit>) {
-        friendlyUnits.addAll(units)
+        this.friendlyUnits.addAll(units)
+    }
+
+    /**
+     * Adds a new unit to the list of hostile units.
+     */
+    fun addHostileUnit(unit: Unit){
+        this.hostileUnits.add(unit)
+    }
+
+    /**
+     * Adds an array list of units to the list of hostile units
+     */
+    fun addHostileUnits(units: ArrayList<Unit>) {
+        this.hostileUnits.addAll(units)
     }
 
     /**
@@ -60,19 +98,5 @@ class City(val name: String) {
         }
 
         return adjCities
-    }
-
-    /**
-     * Moves units from one city to an adjacent city.
-     */
-    fun transferUnits(units: ArrayList<Unit>, targetCity: City) {
-        for (unit in units){
-            if (this.friendlyUnits.contains(unit)){
-                targetCity.addFriendlyUnit(unit)
-                this.friendlyUnits.remove(unit)
-            }
-        }
-//        targetCity.addFriendlyUnits(units)
-//        removeFriendlyUnits(units)
     }
 }

@@ -3,6 +3,7 @@ package views.widgets.ControlPanel.PanelScreens
 import javafx.event.EventHandler
 import javafx.scene.control.Button
 import javafx.scene.control.RadioButton
+import javafx.scene.control.ToggleGroup
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.VBox
 import models.Managers.PlayerManager
@@ -26,8 +27,12 @@ open class SelectAdjacentCityScreen(var buttonText: String = "Submit"): VBox() {
      * Creates the radio buttons for each adjacent city.
      */
     fun createRadioOptions() {
+        val radioGroup = ToggleGroup()
+
         for (city in adjacentCities) {
-            radioOptions.add(CityRadioButton(city))
+            val option = CityRadioButton(city)
+            option.toggleGroup = radioGroup
+            radioOptions.add(option)
         }
         children.addAll(radioOptions)
     }

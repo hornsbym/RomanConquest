@@ -17,15 +17,15 @@ object UnitTestUtils {
 
         if (troopType == Constants.INFANTRY){
             for(x in 1..n){
-                units.add(TroopFactory.newInfantry())
+                units.add(TroopFactory.newPlayerInfantry())
             }
         } else if (troopType == Constants.RANGED) {
             for(x in 1..n){
-                units.add(TroopFactory.newRanged())
+                units.add(TroopFactory.newPlayerRanged())
             }
         } else if (troopType == Constants.CAVALRY) {
             for(x in 1..n){
-                units.add(TroopFactory.newCavalry())
+                units.add(TroopFactory.newPlayerCavalry())
             }
         }
 
